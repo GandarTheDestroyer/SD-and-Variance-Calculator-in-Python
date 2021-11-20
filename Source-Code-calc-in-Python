@@ -1,0 +1,87 @@
+import math
+
+print("Standard Deviation and Variance Calculator for a Population or Sample for Ungrouped
+Data")
+
+print("\nWelcome! Choose the scope of your data:\n1-Population\n2-Sample")
+z = 0
+while z == 0:
+try:
+pors = int(input("\nEnter the number of your choice: "))
+except ValueError:
+print("Invalid Input! Please input 1 or 2 only.")
+z = 0
+else:
+if pors==1:
+print("\nYou have chosen the scope: Population")
+z=1
+elif pors==2:
+print("\nYou have chosen the scope: Sample")
+z=1
+else:
+print("Invalid Input! Please input 1 or 2 only.")
+z=0
+while True:
+try:
+n=int(input("\nEnter total number of values: "))
+except ValueError:
+print("Invalid input! Try again!")
+else:
+break
+data=[]
+no=0
+x=0
+for i in range(0,n):
+no+=1
+while x==0:
+try:
+element=float(input("Enter #{} value: ".format(no)))
+except ValueError:
+print("Invalid input! Try again!")
+x=0
+else:
+data.append(element)
+break
+print("\n____________________________________________________\n\t\tCalculations")
+if pors==1:
+print("\t For Population Scope")
+else:
+print("\t For Sample Scope")
+print("\nValues of x: \t")
+print(data, end=" ")
+summation=sum(data)
+print("\n\nSum: ", summation)
+mean=summation/n
+mean=round(mean, 4)
+print("\nMean: ", mean)
+print("\n\t\t Table")
+print("\n x\t\tx-mean\t\t(x-mean)^2")
+print("____________________________________________________")
+column=[]
+columna=[]
+for i in range(0,n):
+element1=data[i]-mean
+element1=round(element1, 4)
+column.append(element1)
+element2=column[i]*column[i]
+element2=round(element2, 4)
+columna.append(element2)
+print(" {}\t\t{}\t\t {}".format(data[i], column[i], columna[i]))
+summationa=sum(columna)
+summationa=round(summationa, 4)
+print("\t\t\t\tSum of (x-mean)^2: {}".format(summationa))
+if pors==1:
+var=summationa/n
+std=math.sqrt(var)
+var=round(var, 4)
+std=round(std, 4)
+print("\nFor Population Scope:")
+else:
+var=summationa/(n-1)
+std=math.sqrt(var)
+var=round(var, 4)
+std=round(std, 4)
+print("\nFor Sample Scope:")
+print("\nVariance: {}".format(var))
+print("\nStandard Deviation: {}".format(std))
+print("\n____________________________________________________")
